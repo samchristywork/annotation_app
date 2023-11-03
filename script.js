@@ -40,6 +40,21 @@ function render() {
   html += text_area.value;
   html += '</div>';
   root.innerHTML = html;
+
+  html = '';
+  let highlighted = false;
+  for (let i = 0; i < body_text.length; i++) {
+    if (isHighlighted(i) && !highlighted) {
+      html += '<span style="background:yellow">';
+      highlighted = true;
+    }
+    if (!isHighlighted(i) && highlighted) {
+      html += '</span>';
+      highlighted = false;
+    }
+    html += body_text[i];
+  }
+  root.innerHTML = html;
 }
 
 function submit() {
