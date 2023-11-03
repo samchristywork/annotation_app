@@ -4,6 +4,8 @@ var root = document.getElementById("root");
 var body_text = "";
 text_area.value = body_text;
 
+var highlights = [];
+
 function getSelectionCharacterOffsetWithin(element) {
   var start = 0;
   var end = 0;
@@ -21,6 +23,15 @@ function getSelectionCharacterOffsetWithin(element) {
     }
   }
   return { start: start, end: end };
+}
+
+function isHighlighted(index) {
+  for (let i = 0; i < highlights.length; i++) {
+    if (index >= highlights[i].start && index <= highlights[i].end) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function render() {
