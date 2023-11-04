@@ -27,7 +27,7 @@ function getSelectionCharacterOffsetWithin(element) {
 
 function isHighlighted(index) {
   for (let i = 0; i < highlights.length; i++) {
-    if (index >= highlights[i].start && index <= highlights[i].end) {
+    if (index >= highlights[i].start && index < highlights[i].end) {
       return true;
     }
   }
