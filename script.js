@@ -41,18 +41,27 @@ function render() {
   html += '</div>';
   root.innerHTML = html;
 
+  var inflectionPoints = [0, body_text.length];
+  for (let i = 0; i < highlights.length; i++) {
+    inflectionPoints.push(highlights[i].start);
+    inflectionPoints.push(highlights[i].end);
+  }
+
+  inflectionPoints.sort(function(a, b) {
+    return a - b;
+  });
+
   html = '';
-  let highlighted = false;
-  for (let i = 0; i < body_text.length; i++) {
-    if (isHighlighted(i) && !highlighted) {
+  for (let i = 0; i < inflectionPoints.length - 1; i++) {
+    let a = inflectionPoints[i];
+    let b = inflectionPoints[i + 1];
+    if (isHighlighted(a)) {
       html += '<span style="background:yellow">';
-      highlighted = true;
+    } else {
+      html += '<span>';
     }
-    if (!isHighlighted(i) && highlighted) {
-      html += '</span>';
-      highlighted = false;
-    }
-    html += body_text[i];
+    html += body_text.substring(a, b);
+    html += '</span>';
   }
   root.innerHTML = html;
 }
