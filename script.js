@@ -25,13 +25,17 @@ function getSelectionCharacterOffsetWithin(element) {
   return { start: start, end: end };
 }
 
-function isHighlighted(index) {
+function getHighlightClasses(index) {
+  let classList = [];
   for (let i = 0; i < highlights.length; i++) {
     if (index >= highlights[i].start && index < highlights[i].end) {
-      return true;
+      classList.push(highlights[i].classes);
     }
   }
-  return false;
+
+  classList.sort();
+
+  return classList;
 }
 
 function render() {
@@ -55,22 +59,20 @@ function render() {
   for (let i = 0; i < inflectionPoints.length - 1; i++) {
     let a = inflectionPoints[i];
     let b = inflectionPoints[i + 1];
-    if (isHighlighted(a)) {
-      html += '<span style="background:yellow">';
-    } else {
-      html += '<span>';
-    }
+
+    let classList = getHighlightClasses(a);
+    html += '<span class="' + classList.join(" ") + '">';
     html += body_text.substring(a, b);
     html += '</span>';
   }
   root.innerHTML = html;
 }
 
-function addHighlighting(selection, type) {
+function addHighlighting(selection, classes) {
   let highlight = {};
   highlight.start = selection.start;
   highlight.end = selection.end;
-  highlight.type = type;
+  highlight.classes = classes;
 
   highlights.push(highlight);
 
@@ -91,6 +93,9 @@ function submit() {
     switch (key) {
       case "1":
         addHighlighting(selection, "normal");
+        break;
+      case "2":
+        addHighlighting(selection, "error");
         break;
       default:
         console.log("Key not recognized:", key);

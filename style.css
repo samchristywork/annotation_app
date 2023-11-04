@@ -1,0 +1,18 @@
+.normal {
+  background: #ff7;
+}
+
+.error {
+  background: #f77;
+}
+
+.normal.error {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #f77,
+    #f77 5px,
+    #ff7 5px,
+    #ff7 10px,
+    #f77 10px
+  );
+}
