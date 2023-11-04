@@ -66,6 +66,17 @@ function render() {
   root.innerHTML = html;
 }
 
+function addHighlighting(selection, type) {
+  let highlight = {};
+  highlight.start = selection.start;
+  highlight.end = selection.end;
+  highlight.type = type;
+
+  highlights.push(highlight);
+
+  render();
+}
+
 function submit() {
   let html = '';
   html += '<div class="annotated_text">';
