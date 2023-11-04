@@ -84,5 +84,19 @@ function submit() {
   html += '</div>';
   root.innerHTML = html;
 
+  document.addEventListener("keydown", function(e) {
+    let key = e.key;
+    let selection = getSelectionCharacterOffsetWithin(root);
+
+    switch (key) {
+      case "1":
+        addHighlighting(selection, "normal");
+        break;
+      default:
+        console.log("Key not recognized:", key);
+        break;
+    }
+  });
+
   render();
 }
