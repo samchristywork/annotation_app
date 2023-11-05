@@ -37,16 +37,25 @@ function getSelectionCharacterOffsetWithin(element) {
   return { start: start, end: end };
 }
 
-function getHighlightClasses(index) {
-  let classList = [];
+function getHighlightColors(index) {
+  let colorList = [];
   for (let i = 0; i < highlights.length; i++) {
     if (index >= highlights[i].start && index < highlights[i].end) {
-      classList.push(highlights[i].classes);
+      colorList.push(highlights[i].color);
     }
   }
 
-  classList.sort();
+  colorList.sort();
 
+  for (let i = 0; i < colorList.length - 1; i++) {
+    if (colorList[i] == colorList[i + 1]) {
+      colorList.splice(i, 1);
+      i--;
+    }
+  }
+
+  return colorList;
+}
 
 function highlightMatches() {
   let regex = document.getElementById("highlight_regex").value;
@@ -64,10 +73,7 @@ function highlightMatches() {
 
 function render() {
   let html = '';
-  html += '<div class="annotated_text">';
-  html += text_area.value;
-  html += '</div>';
-  root.innerHTML = html;
+  html += '<div class="annotated_text" id="annotated_text">';
 
   var inflectionPoints = [0, body_text.length];
   for (let i = 0; i < highlights.length; i++) {
@@ -79,24 +85,29 @@ function render() {
     return a - b;
   });
 
-  html = '';
   for (let i = 0; i < inflectionPoints.length - 1; i++) {
     let a = inflectionPoints[i];
     let b = inflectionPoints[i + 1];
 
-    let classList = getHighlightClasses(a);
-    html += '<span class="' + classList.join(" ") + '">';
+    let colors = getHighlightColors(a);
+    let index = getHighlightIndex(a);
+    if (index.length > 0) {
+      html += '<span onclick="deleteHighlight(' + index[0] + ')" style="' + getStyle(colors) + '">';
+    } else {
+      html += '<span onclick="" style="' + getStyle(colors) + '">';
+    }
     html += body_text.substring(a, b);
     html += '</span>';
   }
+  html += '</span>';
   root.innerHTML = html;
 }
 
-function addHighlighting(selection, classes) {
+function addHighlighting(selection, color) {
   let highlight = {};
   highlight.start = selection.start;
   highlight.end = selection.end;
-  highlight.classes = classes;
+  highlight.color = color;
 
   highlights.push(highlight);
 
@@ -104,11 +115,9 @@ function addHighlighting(selection, classes) {
 }
 
 function submit() {
-  let html = '';
-  html += '<div class="annotated_text">';
-  html += text_area.value;
-  html += '</div>';
-  root.innerHTML = html;
+  body_text = text_area.value;
+
+  highlight_controls.classList.remove("hidden");
 
   document.addEventListener("keydown", function(e) {
     let key = e.key;
@@ -116,10 +125,16 @@ function submit() {
 
     switch (key) {
       case "1":
-        addHighlighting(selection, "normal");
+        addHighlighting(selection, "#ffa");
         break;
       case "2":
-        addHighlighting(selection, "error");
+        addHighlighting(selection, "#faa");
+        break;
+      case "3":
+        addHighlighting(selection, "#afa");
+        break;
+      case "4":
+        addHighlighting(selection, "#aaf");
         break;
       default:
         console.log("Key not recognized:", key);
