@@ -13,6 +13,38 @@ function clearHighlights() {
 }
 
 function exportHTML() {
+  let html = '';
+  html += '<div class="annotated_text" id="annotated_text">';
+  html += '&lt;span style="white-space: pre-wrap;"&gt;';
+
+  var inflectionPoints = [0, body_text.length];
+  for (let i = 0; i < highlights.length; i++) {
+    inflectionPoints.push(highlights[i].start);
+    inflectionPoints.push(highlights[i].end);
+  }
+
+  inflectionPoints.sort(function(a, b) {
+    return a - b;
+  });
+
+  for (let i = 0; i < inflectionPoints.length - 1; i++) {
+    let a = inflectionPoints[i];
+    let b = inflectionPoints[i + 1];
+
+    let colors = getHighlightColors(a);
+    let index = getHighlightIndex(a);
+    if (index.length > 0) {
+      html += '&lt;span " style="' + getStyle(colors) + '"&gt;';
+    } else {
+      html += '&lt;span style="' + getStyle(colors) + '"&gt;';
+    }
+    html += body_text.substring(a, b);
+    html += '&lt;/span&gt;';
+  }
+
+  html += '</span>';
+  html += '</span>';
+  root.innerHTML = html;
 }
 
 function deleteHighlight(index) {
