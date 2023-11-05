@@ -74,6 +74,36 @@ function getHighlightIndex(index) {
   return [];
 }
 
+function getStyle(colors) {
+  if (colors.length == 0) {
+    return '';
+  }
+
+  let style = '';
+  style += 'background-image: repeating-linear-gradient(45deg, ';
+
+  let offset = 6;
+
+  for (let i = 0; i < colors.length; i++) {
+    style += colors[i];
+    style += ' ';
+    style += i * offset;
+    style += 'px, ';
+
+    style += colors[i];
+    style += ' ';
+    style += (i + 1) * offset;
+    style += 'px, ';
+  }
+
+  style += colors[0];
+  style += ' ';
+  style += colors.length * offset;
+  style += 'px);';
+
+  return style;
+}
+
 function highlightMatches() {
   let regex = document.getElementById("highlight_regex").value;
   let color = document.getElementById("highlight_color").value;
