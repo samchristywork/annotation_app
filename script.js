@@ -15,6 +15,12 @@ function clearHighlights() {
 function exportHTML() {
 }
 
+function deleteHighlight(index) {
+  var selection = window.getSelection();
+  if (selection.type === 'Range' && selection.toString().length > 0) {
+  } else {
+    highlights.splice(index, 1);
+    render();
   }
 }
 
@@ -55,6 +61,17 @@ function getHighlightColors(index) {
   }
 
   return colorList;
+}
+
+function getHighlightIndex(index) {
+  let colorList = [];
+  for (let i = 0; i < highlights.length; i++) {
+    if (index >= highlights[i].start && index < highlights[i].end) {
+      return [i];
+    }
+  }
+
+  return [];
 }
 
 function highlightMatches() {
