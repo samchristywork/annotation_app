@@ -1,10 +1,22 @@
 var text_area = document.getElementById("text_area");
 var root = document.getElementById("root");
+var highlight_controls = document.getElementById("highlight_controls");
 
 var body_text = "";
 text_area.value = body_text;
 
 var highlights = [];
+
+function clearHighlights() {
+  highlights = [];
+  render();
+}
+
+function exportHTML() {
+}
+
+  }
+}
 
 function getSelectionCharacterOffsetWithin(element) {
   var start = 0;
@@ -35,7 +47,19 @@ function getHighlightClasses(index) {
 
   classList.sort();
 
-  return classList;
+
+function highlightMatches() {
+  let regex = document.getElementById("highlight_regex").value;
+  let color = document.getElementById("highlight_color").value;
+
+  let re = new RegExp(regex, "g");
+  let match;
+  while ((match = re.exec(body_text)) != null) {
+    let selection = {};
+    selection.start = match.index;
+    selection.end = match.index + match[0].length;
+    addHighlighting(selection, color);
+  }
 }
 
 function render() {

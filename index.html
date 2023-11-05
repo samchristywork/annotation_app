@@ -18,6 +18,17 @@
       <button type="submit" id="submit" class="button" onclick="submit()">Submit</button>
     </div>
   </div>
+  <div id="highlight_controls" class="hidden container">
+    <input class="text_input" type="text" id="highlight_regex" value="perform" />
+    <select class="button" id="highlight_color">
+      <option value="#ff7">Yellow</option>
+      <option value="#f77">Red</option>
+      <option value="#7f7">Green</option>
+    </select>
+    <button class="button" onclick="highlightMatches()">Highlight</button>
+    <button class="button" onclick="clearHighlights()">Clear Highlights</button>
+    <button class="button" onclick="exportHTML()">Export HTML</button>
+  </div>
 </body>
 
 </html>
