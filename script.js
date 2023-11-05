@@ -3,6 +3,11 @@ var root = document.getElementById("root");
 var highlight_controls = document.getElementById("highlight_controls");
 
 var body_text = "";
+body_text += "Metronomic or arranged rolls are rolls produced by positioning the music slots without real-time input from a performing musician. The music, when played back, is typically purely metronomical. Metronomically arranged music rolls are deliberately left metronomic so as to enable a player-pianist to create their own musical performance (such as varying the dynamics, tempo, and phrasing) via the hand controls that are a feature of all player pianos.\n\n";
+body_text += "Hand played rolls are created by capturing in real time the hand-played performance of one or more pianists upon a piano connected to a recording machine. The production roll reproduced the real-time performance of the original recording when played back at a constant speed. (It became industry convention for recordings of music intended to be used for dancing to be regularized into strict tempo despite the original performance having the slight tempo fluctuations of all human performances, as due to the recording and production process, any fluctuations would be magnified/exaggerated in the finished production copy and result in an uneven rhythm.)\n\n";
+body_text += `Reproducing rolls are the same as hand-played rolls but have additional control codes to operate the dynamic modifying systems specific to whichever brand of reproducing piano it is designed to be played back on, producing an approximation of the original recording pianist's dynamics. Reproducing pianos were beyond the reach of the average home in the original era of popularity of these instruments and were heavily marketed as reproducing the 'soul' of the performer – slogans such as "The Master's Fingers On Your Piano" or "Paderewski will play for you in your own house!" were common.\n\n`;
+body_text += `Wikipedia contributors. (2023, July 26). Piano roll. In Wikipedia, The Free Encyclopedia. Retrieved 19:34, November 4, 2023, from https://en.wikipedia.org/w/index.php?title=Piano_roll&oldid=1167168161`;
+
 text_area.value = body_text;
 
 var highlights = [];
