@@ -10,13 +10,12 @@
 </head>
 
 <body>
-  <div id="root">
+  <h1>Text Annotation Tool</h1>
+  <div id="root" class="container">
     <div>
-      Enter text:
-    </div>
-    <textarea id="text_area" rows="4" cols="50"></textarea>
-    <div>
-      <button id="submit" onclick="submit()">Submit</button>
+      <textarea id="text_area" name="userText" rows="20" cols="50" placeholder="Enter your text here..."></textarea>
+      <br><br>
+      <button type="submit" id="submit" class="button" onclick="submit()">Submit</button>
     </div>
   </div>
 </body>
