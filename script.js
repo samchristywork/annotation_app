@@ -1,6 +1,7 @@
 var text_area = document.getElementById("text_area");
 var root = document.getElementById("root");
 var highlight_controls = document.getElementById("highlight_controls");
+var modal = document.getElementById("modal");
 
 var body_text = "";
 body_text += "Metronomic or arranged rolls are rolls produced by positioning the music slots without real-time input from a performing musician. The music, when played back, is typically purely metronomical. Metronomically arranged music rolls are deliberately left metronomic so as to enable a player-pianist to create their own musical performance (such as varying the dynamics, tempo, and phrasing) via the hand controls that are a feature of all player pianos.\n\n";
@@ -11,6 +12,10 @@ body_text += `Wikipedia contributors. (2023, July 26). Piano roll. In Wikipedia,
 text_area.value = body_text;
 
 var highlights = [];
+
+function closeModal() {
+  modal.style.display = "none";
+}
 
 function clearHighlights() {
   highlights = [];
@@ -158,6 +163,11 @@ function highlightMatches() {
 function render() {
   let html = '';
   html += '<div class="annotated_text" id="annotated_text">';
+
+  console.log("Highlights:");
+  for (let i = 0; i < highlights.length; i++) {
+    console.log(highlights[i].start, highlights[i].end, highlights[i].color);
+  }
 
   var inflectionPoints = [0, body_text.length];
   for (let i = 0; i < highlights.length; i++) {
