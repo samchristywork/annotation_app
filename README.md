@@ -2,6 +2,8 @@
 
 ## Overview
 
+[Demo Server](https://annotate.s-christy.com/)
+
 <p align="center">
   <img src="./assets/screenshot.png" width=500 />
 </p>
@@ -18,6 +20,16 @@ Word, or any other program I've tried.
 
 For this reason, I made this simple little utility that indicates text that
 belongs to multiple groups using a striped pattern.
+
+## Features
+
+- Allows the user to add a highlight quickly using the mouse
+- Annotated text can be exported as HTML to paste elsewhere
+- Dialog to confirm before deleting a highlight
+- Comes with four default colors that can be selected with the 1-4 keys
+- Buttons to automatically highlight a string or clear all highlights
+- No dependencies except Python 3
+- Simple but bold styling
 
 ## Usage
 
