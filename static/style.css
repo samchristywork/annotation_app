@@ -30,6 +30,8 @@ body {
 h1 {
   text-align: center;
   color: #333;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 textarea#text_area {
@@ -82,7 +84,7 @@ textarea#text_area {
   margin: auto;
   padding: 20px;
   border: 1px solid #666;
-  width: 80%;
+  width: 40rem;
   background-color: #fefefe;
   border-radius: 1rem;
 }
@@ -139,4 +141,8 @@ textarea#text_area {
 
 #modal-cancel:hover {
   background-color: #c9302c;
+}
+
+.centered {
+  text-align: center;
 }
