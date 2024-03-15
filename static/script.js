@@ -162,12 +162,14 @@ function highlightMatches() {
 
 function render() {
   let html = '';
+  html += '<p class="centered">With text selected, press 1, 2, 3, or 4 to highlight the text with a color. ';
+  html += 'A highlight can be deleted by clicking on it.</p>';
   html += '<div class="annotated_text" id="annotated_text">';
 
-  console.log("Highlights:");
-  for (let i = 0; i < highlights.length; i++) {
-    console.log(highlights[i].start, highlights[i].end, highlights[i].color);
-  }
+  //console.log("Highlights:");
+  //for (let i = 0; i < highlights.length; i++) {
+  //  console.log(highlights[i].start, highlights[i].end, highlights[i].color);
+  //}
 
   var inflectionPoints = [0, body_text.length];
   for (let i = 0; i < highlights.length; i++) {
