@@ -2,6 +2,12 @@ var text_area = document.getElementById("text_area");
 var root = document.getElementById("root");
 var highlight_controls = document.getElementById("highlight_controls");
 var modal = document.getElementById("modal");
+var submit_button = document.getElementById("submit");
+var modal_text = document.getElementById("modal-text");
+var modal_cancel = document.getElementById("modal-cancel");
+var modal_ok = document.getElementById("modal-ok");
+var modal_title = document.getElementById("modal-title");
+submit_button.focus();
 
 var body_text = "";
 body_text += "Metronomic or arranged rolls are rolls produced by positioning the music slots without real-time input from a performing musician. The music, when played back, is typically purely metronomical. Metronomically arranged music rolls are deliberately left metronomic so as to enable a player-pianist to create their own musical performance (such as varying the dynamics, tempo, and phrasing) via the hand controls that are a feature of all player pianos.\n\n";
@@ -14,7 +20,23 @@ text_area.value = body_text;
 var highlights = [];
 
 function closeModal() {
-  modal.style.display = "none";
+  modal.classList.add("hidden");
+}
+
+function openModal(title, message, yes, no) {
+  modal_title.innerHTML = title;
+  modal_text.innerHTML = message;
+  modal.classList.remove("hidden");
+
+  modal_ok.onclick = function() {
+    closeModal();
+    yes();
+  }
+
+  modal_cancel.onclick = function() {
+    closeModal();
+    no();
+  }
 }
 
 function clearHighlights() {
