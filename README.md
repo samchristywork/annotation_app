@@ -6,22 +6,27 @@
   <img src="./assets/screenshot.png" width=500 />
 </p>
 
-## Features
+Sometimes complicated prose can be difficult to parse. I have a habit of opening
+up a word processor and highlighting parts of the text in different colors to
+"break it down". For instance, I might highlight supporting evidence in one
+color, factual errors in another color, and things I need to look into further
+in a third color.
 
-## Setup
+There is a big problem with this method: if a stretch of text falls into two
+groups at once, I can't highlight it *both* red and yellow in Google Docs, or
+Word, or any other program I've tried.
+
+For this reason, I made this simple little utility that indicates text that
+belongs to multiple groups using a striped pattern.
 
 ## Usage
 
-```
-```
-
-## Examples
-
-## Limitations
+Simply run the `serve.sh` script in the repository root.
 
 ## Dependencies
 
 ```
+python3
 ```
 
 ## License
