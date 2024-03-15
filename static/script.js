@@ -80,12 +80,17 @@ function exportHTML() {
 }
 
 function deleteHighlight(index) {
-  var selection = window.getSelection();
-  if (selection.type === 'Range' && selection.toString().length > 0) {
-  } else {
-    highlights.splice(index, 1);
-    render();
-  }
+  let choice = openModal("Delete", "Delete this highlight?",
+    () => {
+      var selection = window.getSelection();
+      if (selection.type === 'Range' && selection.toString().length > 0) {
+      } else {
+        highlights.splice(index, 1);
+        render();
+      }
+    }, () => {
+    }
+  );
 }
 
 function getSelectionCharacterOffsetWithin(element) {
@@ -239,7 +244,8 @@ function submit() {
 
   document.addEventListener("keydown", function(e) {
     let key = e.key;
-    let selection = getSelectionCharacterOffsetWithin(root);
+    let annotated_text = document.getElementById("annotated_text");
+    let selection = getSelectionCharacterOffsetWithin(annotated_text);
 
     switch (key) {
       case "1":
